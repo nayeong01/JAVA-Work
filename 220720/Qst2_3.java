@@ -6,8 +6,8 @@ public class Qst2_3 {
 		// TODO Auto-generated method stub
 		float[][][][] school = new float[3][5][30][3];
 		float[][] levelSums = new float[3][3]; //학년별 평균
-		float[][][] classSums = new float[3][5][3]; // 반별 평균 
-		float[] subjectSums = new float[3];//과목별 전체 평균
+		float[][][] classSums = new float[3][5][3]; //반별 평균 
+		float[] subjectSums = new float[3];//과목별 평균
 
 		for (int i=0;i<school.length;i++) 
 			for(int j=0;j<school[0].length;j++)  
@@ -30,7 +30,6 @@ public class Qst2_3 {
 						System.out.format("%n");
 					}
 			}
-		
 		
 		
 		System.out.format("<<학년별 과목 평균>>");
@@ -57,9 +56,7 @@ public class Qst2_3 {
 				// 첫번째 만든 for문에서 어떻게든 해보려고 했는데, 그냥 아예 새로운 원하는 배열을 만들어서 for문으로 돌리면 된다!! 좀 더 단순하게 생각해보자
 			}
 		}
-		
-		
-		
+
 		System.out.format("%n<<반별 과목 평균>>");
 		for (int i=0;i<school.length;i++) {
 			for(int j=0;j<school[0].length;j++)  
@@ -84,9 +81,9 @@ public class Qst2_3 {
 		
 		
 		System.out.format("%n<<과목별 평균>>%n");
-		for (int i=0;i<school.length;i++) 
-			for(int j=0;j<school[0].length;j++)  
-				for(int k=0;k<school[0][0].length;k++) 
+		for (int i=0;i<school.length;i++)
+			for(int j=0;j<school[0].length;j++)
+				for(int k=0;k<school[0][0].length;k++)
 					for(int p=0; p< school[0][0][0].length; p++)
 						subjectSums[p] += school[i][j][k][p];
 		
