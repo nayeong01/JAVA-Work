@@ -30,7 +30,6 @@ public class Restaurant {
 		}else
 			System.out.println(this.restaurantName+" is close.");
 			return false;
-		
 	}
 	
 	public String getName() {
@@ -41,6 +40,4 @@ public class Restaurant {
 	    return cuisineType;
 	    }
 
-	
-	
 }
