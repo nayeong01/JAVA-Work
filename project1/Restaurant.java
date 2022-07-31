@@ -1,4 +1,4 @@
-package com.ezdesign.project;
+package project;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

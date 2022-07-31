@@ -1,4 +1,4 @@
-package com.ezdesign.project;
+package project;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class RestaurantInfo {
 
 	/*
 	public void showRestaurant() {
-		System.out.println("<<ë ˆìŠ¤í† ëž‘ ëª©ë¡>>");
+		System.out.println("<<·¹½ºÅä¶û ¸ñ·Ï>>");
 		for (int i=0; i<restaurants.size(); i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
 			System.out.println("Name: "+show.getName());
@@ -30,16 +30,15 @@ public class RestaurantInfo {
 		
 		Restaurant it = new Restaurant(restaurantName, cuisineType);
 		restaurants.add(it);
-		System.out.println(restaurants);
 	}
 
 	public void unregisterRestaurant(String restaurantName) {
 		
 		for (int i=0; i<restaurants.size(); i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
-			if (restaurantName.equals(show.getName())){ // string íƒ€ìž…ìœ¼ë¡œ ê°€ì ¸ì˜¤ëŠ”ê²Œ ì•„ë‹Œê°€? ì™œ ê±¸ë¦¬ì§€ ì•Šì§€?
+			if (restaurantName.equals(show.getName())){ // string Å¸ÀÔÀ¸·Î °¡Á®¿À´Â°Ô ¾Æ´Ñ°¡? ¿Ö °É¸®Áö ¾ÊÁö?
 				restaurants.remove(i);
-				System.out.println(show.getName()+"ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				System.out.println(show.getName()+"ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
 				}
 			}
 		}
@@ -65,15 +64,15 @@ public class RestaurantInfo {
 					String newName= new Scanner(System.in).next();
 					Restaurant restNew = new Restaurant(newName, show.cuisineType);
 					restaurants.set(i, restNew);
-					//restaurant = new Restaurant(newName,w.getType());// ì´ë¦„ì„ ì–´ë–»ê²Œ ë³€ê²½í•˜ì§€?
+					//restaurant = new Restaurant(newName,w.getType());// ÀÌ¸§À» ¾î¶»°Ô º¯°æÇÏÁö?
 					
-					System.out.println("ì´ë¦„ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
+					System.out.println("ÀÌ¸§ÀÌ º¯°æµÇ¾ú½À´Ï´Ù.");
 				//}
 			}	
 		}
 	}
 	
-	public void loginUser(String restaurantName) {
+	public void loginUser(String restaurantName, String userType) {
 		for (int i =0; i <restaurants.size(); i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
 			
@@ -85,14 +84,12 @@ public class RestaurantInfo {
 					String first= sc.next();
 					System.out.println("Last name: ");
 					String last= sc.next();
-					System.out.println("User type: ");
-					String type= sc.next();
-			
-					User user = new User();
-					user.describeUser(first, last, type);
-					user.greetUser(first, last, type);
+
+					User user = new User(first, last, userType);
+					user.describeUser(first, last, userType);
+					user.greetUser(first, last, userType);
 				}else
-					System.out.println("ì‹ë‹¹ ì˜ì—…ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+					System.out.println("½Ä´ç ¿µ¾÷ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
 				
 			}
 		}

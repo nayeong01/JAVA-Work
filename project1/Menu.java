@@ -1,4 +1,4 @@
-package com.ezdesign.project;
+package project;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Menu {
 	      System.out.println("6 - MODIFY_RESTAURANT");
 	      System.out.println("7 - QUIT\n");
 	      System.out.println("Enter a choice: ");
-	      return new Scanner(System.in).nextInt(); // return user‚Äôs selection
+	      return new Scanner(System.in).nextInt(); // return user°Øs selection
 	}
 	 
 	public void showRestaurants() {
@@ -37,8 +37,9 @@ public class Menu {
 	 
 	 public static void main(String[] args) {
 		 Menu menu = new Menu();
+		 boolean test = true;
 		 
-		 while(true) {
+		 while(test) {
 			 
 		  int menuSelection =  menu.displayMainMenu();
 		  Scanner sc = new Scanner(System.in);
@@ -47,11 +48,13 @@ public class Menu {
 			  case SHOW_RESTAURANT:
 				  menu.showRestaurants();
 				  break;
+				  
 			  case SEARCH_RESTAURANT:
 				  System.out.println("Enter the restaurant name: ");
 				  String name = sc.next();
 				  menu.restaurantInfo.searchRestaurant(name);
 				  break;
+				  
 			  case REGISTER_RESTAURANT:
 				  System.out.println("Enter the restaurant name: ");
 				  String name1 = sc.next();
@@ -59,25 +62,47 @@ public class Menu {
 				  String type = sc.next();
 				  menu.restaurantInfo.registerRestaurant(name1, type);
 				  break;
+				  
 			  case UNREGISTER_RESTAURANT:
 				  System.out.println("Enter the restaurant name: ");
 				  String name2 = sc.next();
 				  menu.restaurantInfo.unregisterRestaurant(name2);
 				  break;
+				  
 			  case LOGIN_USER:
-				  menu.showRestaurants();
-				  System.out.println("Enter the restaurant name: ");
-				  String name3 = sc.next();
-				  menu.restaurantInfo.loginUser(name3);
-				  break;
+
+				  System.out.println("User or Admin? ");
+				  String usertype = sc.next();
+				  
+				  if (usertype.equals("user")) {
+					  menu.showRestaurants();  
+					  System.out.println("Enter the restaurant name: ");
+					  String name3 = sc.next();
+					  menu.restaurantInfo.loginUser(name3, usertype);
+					  break;
+				  
+				  } else {
+					  System.out.println("Enter your first name: ");
+					  String first = sc.next();
+					  System.out.println("Enter your last name: ");
+					  String last = sc.next();
+					  
+					  Admin admin = new Admin(first, last, usertype);
+					  admin.privileges.showPrivileges(first, last);
+					  break;
+				  }
+				  
 			  case MODIFY_RESTAURANT:
 				  System.out.println("Enter the restaurant name: ");
 				  String name4 = sc.next();
 				  menu.restaurantInfo.modifyRestaurant(name4);
 				  break;
-			  case QUIT:
 				  
+			  case QUIT:
+				  System.out.println("¿ÃøÎ«ÿ¡÷º≈º≠ ∞®ªÁ«’¥œ¥Ÿ.");
+				  test = false; 
 		  	}
+		  
 		 }
 	 }
 }

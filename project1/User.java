@@ -1,24 +1,35 @@
-package com.ezdesign.project;
+package project;
 
 public class User {
 	private String firstName;
 	private String lastName;
-	private int loginAttempt;
 	private String userType;
 
-	public User() {
+	public User(String firstname, String lastname, String usertype) {
 	
-		//this.firstName = firstName;
-		//this.lastName = lastName;
-		//this.userType = userType;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userType = userType;
+		
 	}	
 
 	public void describeUser(String firstname, String lastname, String usertype) {
-		System.out.println(firstname+lastname+"ë‹˜ì€ "+usertype+"ì…ë‹ˆë‹¤.");
+		System.out.println(firstname+lastname+"´ÔÀº "+usertype+"ÀÔ´Ï´Ù.");
 	}
 	
 	public void greetUser(String firstname, String lastname, String usertype) {
-		System.out.println(firstname+lastname+"ë‹˜, ì•ˆë…•í•˜ì„¸ìš”!");
+		System.out.println(firstname+lastname+"´Ô, ¾È³çÇÏ¼¼¿ä!");
 	}
-
 }
+
+class Admin extends User{
+	
+	Privileges privileges;
+
+	public Admin(String firstname, String lastname, String usertype) {
+		super(firstname, lastname, usertype);
+		
+		this.privileges = new Privileges(firstname, lastname);
+		
+		}
+	}
