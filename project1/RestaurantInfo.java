@@ -1,4 +1,4 @@
-package project;
+package com.ezdesign.project;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,38 +7,39 @@ import java.util.Scanner;
 public class RestaurantInfo {
 	
 	protected final List<Restaurant> restaurants;
+	List<User> users;
+
 
 	public RestaurantInfo() {
 		this.restaurants = new LinkedList<Restaurant>();
+		this.users = new LinkedList<User>();
 	}
 
-	/*
 	public void showRestaurant() {
-		System.out.println("<<·¹½ºÅä¶û ¸ñ·Ï>>");
+		System.out.println("<<ë ˆìŠ¤í† ë‘ ëª©ë¡>>");
 		for (int i=0; i<restaurants.size(); i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
 			System.out.println("Name: "+show.getName());
 		}
 	}
-	*/
 	
 	public List<Restaurant> getRestaurants(){
 		return this.restaurants;
 	}
 	
-	public void registerRestaurant(String restaurantName, String cuisineType) {
+	
+	public void registerRestaurant(String name, String type, int number) {
 		
-		Restaurant it = new Restaurant(restaurantName, cuisineType);
+		Restaurant it = new Restaurant(name , type, number);
 		restaurants.add(it);
 	}
-
 	public void unregisterRestaurant(String restaurantName) {
 		
 		for (int i=0; i<restaurants.size(); i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
-			if (restaurantName.equals(show.getName())){ // string Å¸ÀÔÀ¸·Î °¡Á®¿À´Â°Ô ¾Æ´Ñ°¡? ¿Ö °É¸®Áö ¾ÊÁö?
+			if (restaurantName.equals(show.getName())){ // stringíƒ€ì… ë¹„êµëŠ” equals ì‚¬ìš©.
 				restaurants.remove(i);
-				System.out.println(show.getName()+"ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+				System.out.println(show.getName()+"ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 				}
 			}
 		}
@@ -53,44 +54,71 @@ public class RestaurantInfo {
 		}
 	}
 	
-	
 	public void modifyRestaurant(String restaurantName) {
 		for (int i=0; i<restaurants.size();i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
 			if (restaurantName.equals(show.getName())) {
 			
-				//if (restaurant != null) { 
-					System.out.println("Enter the new Restaurant name: ");
-					String newName= new Scanner(System.in).next();
-					Restaurant restNew = new Restaurant(newName, show.cuisineType);
-					restaurants.set(i, restNew);
-					//restaurant = new Restaurant(newName,w.getType());// ÀÌ¸§À» ¾î¶»°Ô º¯°æÇÏÁö?
+				System.out.println("Enter the new Restaurant name: ");
+				String newName= new Scanner(System.in).next();
+				Restaurant restNew = new Restaurant(newName, show.cuisineType, show.numberServed);
+				restaurants.set(i, restNew);
+				//ë¦¬ìŠ¤íŠ¸ ë‚´ìš©ì„ ë³€ê²½í•  ë•, setì„ ì“°ë©´ ëœë‹¤. ì—¬ê¸°ì„œëŠ” ì•„ì˜ˆ ë¦¬ìŠ¤íŠ¸ ìì²´ë¥¼ ë®ì–´ì¨ë²„ë ¸ë‹¤. 
 					
-					System.out.println("ÀÌ¸§ÀÌ º¯°æµÇ¾ú½À´Ï´Ù.");
-				//}
+				System.out.println("ë ˆìŠ¤í† ë‘ ì •ë³´ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}	
 		}
 	}
 	
+	public void registerUser(String first, String last, String type, int attempts) {
+		
+		User user = new User(first, last, type, attempts);
+		users.add(user);
+	}
+	
 	public void loginUser(String restaurantName, String userType) {
+		RestaurantInfo info = new RestaurantInfo();
 		for (int i =0; i <restaurants.size(); i++) {
 			Restaurant show = (Restaurant) restaurants.get(i);
 			
 			if (restaurantName.equals(show.getName())) {
 				Scanner sc = new Scanner(System.in);
 		
-				if(show.restaurantOpen() == true) { 
+				if(show.restaurantOpen() == true) {
+					boolean test = false;
 					System.out.println("First name: ");
 					String first= sc.next();
 					System.out.println("Last name: ");
 					String last= sc.next();
-
-					User user = new User(first, last, userType);
-					user.describeUser(first, last, userType);
-					user.greetUser(first, last, userType);
-				}else
-					System.out.println("½Ä´ç ¿µ¾÷ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
+					int attempts =0;
+					
+					for (int j =0; j<users.size();j++) {
+						User usr = (User) users.get(j);
+						
+						if (usr.getlastName().equals(last)&&usr.getfirstName().equals(first)){	
+							usr.greetUser(first, last);
+							usr.incrementLoginAttempts(first, last);
+							show.incrementNumberServed();
+							test = true;
+							break;
+						}
+					}
+					if(test==false){
+		    			User user1 = new User (first, last, userType, attempts);
+		    			//info.users.add(user1);
+						String A = user1.getlastName();
+						System.out.println(A);
+						
+						
+						//System.out.println(users);
+						user1.greetUser(first, last);
+						user1.incrementLoginAttempts(first, last);
+						show.incrementNumberServed();
+					}
 				
+					
+			}else
+				System.out.println("ì‹ë‹¹ ì˜ì—…ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 		}
 	}

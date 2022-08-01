@@ -1,4 +1,4 @@
-package project;
+package com.ezdesign.project;
 
 import java.util.LinkedList;
 
@@ -8,15 +8,13 @@ public class Privileges {
 	
 	public Privileges(String firstname, String lastname) {
 		this.privileges = new LinkedList();
-		privileges.add("Æ÷½ºÆ®¸¦ ºÙÀÏ ¼ö ÀÖ´Ù.");
-		privileges.add("Æ÷½ºÆ®¸¦ »èÁ¦ÇÒ ¼ö ÀÖ´Ù.");
-		privileges.add("»ç¿ëÀÚ¸¦ ¸·À» ¼ö ÀÖ´Ù.");
-		
-
+		privileges.add("í¬ìŠ¤íŠ¸ë¥¼ ë¶™ì¼ ìˆ˜ ìˆë‹¤.");
+		privileges.add("í¬ìŠ¤íŠ¸ë¥¼ ì‚­ì œí•  ìˆ˜ ìˆë‹¤.");
+		privileges.add("ì‚¬ìš©ìë¥¼ ë§‰ì„ ìˆ˜ ìˆë‹¤.");
 	}
 	
 	public void showPrivileges(String firstname, String lastname) {
-		System.out.println("<< "+firstname+lastname+" °ü¸®ÀÚ ±ÇÇÑ ¸ñ·Ï>>");
+		System.out.println("<< "+firstname+lastname+" ê´€ë¦¬ì ëª©ë¡ >>");
 		for(int i=0; i<privileges.size(); i++)
 			System.out.println(privileges.get(i));
 	}
