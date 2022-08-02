@@ -62,8 +62,6 @@ public class Catalog {
 		String title1 = sc.next();
 		System.out.println("Enter a subject: ");
 		String subject1 = sc.next();
-		System.out.println("Enter a UPC: ");
-		String UPC1 = sc.next();
 		
 		if (category==1) {
 			
@@ -86,7 +84,7 @@ public class Catalog {
 		System.out.println("Enter the DDS number: ");
 		String dds = sc.next();
 		
-		Book book = new Book(title1, UPC1, subject1, author, isbn, dds);
+		Book book = new Book(title1, subject1, author, isbn, dds);
 		libraryitem.add(book);
 		}
 		
@@ -104,6 +102,9 @@ public class Catalog {
 				ContributorWithType cwp = new ContributorWithType(cont,"Artist");
 				artist.add(cwp);
 			}
+			
+			System.out.println("Enter a UPC: ");
+			String UPC1 = sc.next();
 			
 			CD cd = new CD(title1, UPC1, subject1, artist);
 			libraryitem.add(cd);
@@ -129,7 +130,7 @@ public class Catalog {
 			System.out.println("Enter the issue: ");
 			String issue = sc.next();
 			
-			Magazine magazine = new Magazine(title1, UPC1, subject1,Editer,volume, issue);
+			Magazine magazine = new Magazine(title1, subject1,Editer,volume, issue);
 			libraryitem.add(magazine);
 		}
 		
@@ -151,7 +152,7 @@ public class Catalog {
 			System.out.println("Enter the genre: ");
 			String genre = sc.next();
 			
-			DVD dvd = new DVD(title1, UPC1, subject1, DrAc, genre);
+			DVD dvd = new DVD(title1, subject1, DrAc, genre);
 			libraryitem.add(dvd);
 		}
 	}
