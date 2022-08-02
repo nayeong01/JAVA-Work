@@ -10,12 +10,12 @@ public class User {
 	
 	//protected final LinkedList<User> users;
 	
-	public User(String firstname, String lastname, String usertype, int loginAttempts) {
+	public User(String firstName, String lastName) {
 	
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userType = userType;
-		this.loginAttempts = loginAttempts;
+		//this.userType = userType;
+		//this.loginAttempts = loginAttempts;
 		
 		//this.users = new LinkedList<User>();
 		
@@ -25,8 +25,8 @@ public class User {
 		System.out.println(firstname+lastname+"님은 "+usertype+" 입니다.");
 	}
 	
-	public void greetUser(String firstname, String lastname) {
-		System.out.println(firstname+lastname+"님, 안녕하세요! ");
+	public void greetUser() {
+		System.out.println(this.firstName+this.lastName+"님, 안녕하세요! ");
 	}
 	
 	public void resetLoginAttempts() {
@@ -34,9 +34,9 @@ public class User {
 		System.out.println("로그인 시도가 리셋되었습니다.");
 	}
 	
-	public int incrementLoginAttempts(String first, String last) {
+	public int incrementLoginAttempts() {
 		this.loginAttempts +=1;
-		System.out.println(first+last+"님은 로그인을 "+this.loginAttempts+"회 시도하셨습니다.");	
+		System.out.println(this.firstName+this.lastName+"님은 로그인을 "+this.loginAttempts+"회 시도하셨습니다.");	
 		return loginAttempts;
 	}
 	
@@ -53,10 +53,10 @@ class Admin extends User{
 	
 	Privileges privileges;
 
-	public Admin(String firstname, String lastname, String usertype, int attempts) {
-		super(firstname, lastname, usertype, attempts);
+	public Admin(String firstname, String lastname) {
+		super(firstname, lastname);
 		
-		this.privileges = new Privileges(firstname, lastname);
+		this.privileges = new Privileges();
 		
 		}
 	}

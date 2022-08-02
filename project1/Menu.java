@@ -1,5 +1,6 @@
 package com.ezdesign.project;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -35,8 +36,70 @@ public class Menu {
 	}  // for문 대신 람다식으로 만든 레스토랑 보여주기 코드. forEach를 사용한다.
 	
 	public void loginUser() {
-		
+		 
+		System.out.println("User(1) or Admin(2)? ");
+		int usertype = new Scanner(System.in).nextInt();
+		  
+		  if (usertype == 1) {
+			  this.showRestaurants();  
+			  System.out.println("Enter the restaurant name: ");
+			  String name3 = new Scanner(System.in).next();
+			  
+			  List<Restaurant> restaurants = this.restaurantInfo.getRestaurants();
+			  
+			  for (int i =0; i <restaurants.size(); i++) {
+					Restaurant show = restaurants.get(i);
+					
+					if (name3.equals(show.getName())) {			
+						if(show.restaurantOpen()) {
+							
+							boolean test1 = false;
+							System.out.println("First name: ");
+							String first= new Scanner(System.in).next();
+							System.out.println("Last name: ");
+							String last= new Scanner(System.in).next();
+							
+							User usr = new User(first, last);
+							List<User> users = show.getUsers();
+							//int attempts =0;
+							
+							for (int j =0; j<users.size(); j++) {
+								User usr1 = users.get(j);
+								if (usr1.getlastName().equals(last)&&usr1.getfirstName().equals(first)){	
+									
+									usr1.greetUser();
+									usr1.incrementLoginAttempts();
+									show.incrementNumberServed();
+									test1 = true;
+									break;
+								}
+							}
+							if(!test1){
+								//	User user1 = new User (first, last, usertype, attempts);
+								    users.add(usr);
+									System.out.println(usr.getlastName());
+
+									usr.greetUser();
+									usr.incrementLoginAttempts();
+									show.incrementNumberServed();
+									//show.getUsers().add(usr);
+						}
+				 }//open if문 끝
+		  }//내가 입력한 식당이름이랑 맞는지 체크하는 if문 끝
+} // restaurants 돌리는 for문 끝		
+			  
+		  	}else {
+		  		System.out.println("Enter your first name: ");
+		  		String first1 = new Scanner(System.in).next();
+		  		System.out.println("Enter your last name: ");
+		  		String last1 = new Scanner(System.in).next();
+			  
+		  		Admin admin = new Admin(first1, last1);
+		  		admin.privileges.showPrivileges();
+			  // Admin 클래스에 있는 privileges를 불러오고, 그 클래스에 있는 메서드를 호출한다. 
+		  }
 	}
+
 	 
 	 public static void main(String[] args) {
 		 Menu menu = new Menu();
@@ -63,8 +126,7 @@ public class Menu {
 				  String name1 = sc.next();
 				  System.out.println("Enter the cusinetype: ");
 				  String type = sc.next();
-				  int numberServed = 0;
-				  menu.restaurantInfo.registerRestaurant(name1, type, numberServed);
+				  menu.restaurantInfo.registerRestaurant(name1, type);
 				  break;
 				  
 			  case UNREGISTER_RESTAURANT:
@@ -74,29 +136,9 @@ public class Menu {
 				  break;
 				  
 			  case LOGIN_USER:
-				  System.out.println("User or Admin? ");
-				  String usertype = sc.next();
-				  
-				  if (usertype.equals("user")) {
-					  menu.showRestaurants();  
-					  System.out.println("Enter the restaurant name: ");
-					  String name3 = sc.next();
-					  menu.restaurantInfo.loginUser(name3, usertype);
-					  break;
-				  
-				  } else {
-					  System.out.println("Enter your first name: ");
-					  String first = sc.next();
-					  System.out.println("Enter your last name: ");
-					  String last = sc.next();
-					  int attempts =0;
-					  
-					  Admin admin = new Admin(first, last, usertype, attempts);
-					  admin.privileges.showPrivileges(first, last);
-					  // Admin 클래스에 있는 privileges를 불러오고, 그 클래스에 있는 메서드를 호출한다. 
-					  break;
-				  }
-				  
+				  menu.loginUser();
+				  break;
+		  
 			  case MODIFY_RESTAURANT:
 				  System.out.println("Enter the restaurant name: ");
 				  String name4 = sc.next();

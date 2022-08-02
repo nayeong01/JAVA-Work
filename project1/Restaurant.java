@@ -11,15 +11,19 @@ public class Restaurant {
 	protected String cuisineType;
 	protected int numberServed;
 	
-	public final List<User> users;
+	private final List<User> users;
 	
-	Restaurant(String restaurantName, String cuisineType, int numberServed){
+	Restaurant(String restaurantName, String cuisineType){
 		this.restaurantName = restaurantName;
 		this.cuisineType = cuisineType;
-		this.numberServed = numberServed;
+		//this.numberServed = numberServed;
 		
 		this.users = new LinkedList<User>();
 		
+	}
+	
+	public List<User> getUsers() {
+		return this.users;
 	}
 	
 	public void describeRestaurant() {
@@ -46,13 +50,6 @@ public class Restaurant {
 		this.numberServed +=1;
 		System.out.println("오늘 "+this.restaurantName+" 방문자 수는 "+ numberServed+"명 입니다.");
 		return numberServed;
-	}
-	
-	public void loginUser(String first, String last, String userType, int attempts) {
-		
-		User user = new User(first, last, userType, attempts);
-		users.add(user);
-		
 	}
 	
 	public String getName() {
