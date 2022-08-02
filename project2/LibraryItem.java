@@ -7,20 +7,19 @@ import java.util.Scanner;
 public abstract class LibraryItem {
 	
 	private String title;
-	private String UPC;
 	private String subject;
 	private ArrayList<ContributorWithType> contributors;
 	Catalog catalog;
 
-	public LibraryItem(String title, String UPC, String subject, ArrayList<ContributorWithType> contributors) {
+	public LibraryItem(String title,String subject, ArrayList<ContributorWithType> contributors) {
+		
 		this.title = title;
-		this.UPC = UPC;
 		this.subject = subject;
 		this.contributors = contributors;
 		this.catalog = new Catalog();
+	
 	}
 	
-
 	public void locate() {
 		
 	}
@@ -48,15 +47,13 @@ class Book extends LibraryItem{
 	private String title;
 	private String subject;
 	private String DDSNumber;
-	private String UPC;
 	private ArrayList<ContributorWithType> contributors;
 	
-	public Book(String title, String UPC, String subject, ArrayList<ContributorWithType> contributors
+	public Book(String title, String subject, ArrayList<ContributorWithType> contributors
 			,String ISBN, String DDSNumber) {
-		super(title, UPC, subject, contributors);
+		super(title,subject, contributors);
 		
 		this.title = title;
-		this.UPC = UPC;
 		this.subject = subject;
 		this.contributors = contributors;
 		this.DDSNumber = DDSNumber;
@@ -70,12 +67,11 @@ class Book extends LibraryItem{
 		System.out.println("\nType : Book"+
 						   "\nTitle : "+this.title+
 						   "\nsubject : "+this.subject);
-		
 	}
 
 	@Override
 	public Book modifyItem(String name) {
-		Book newItem = new Book(name, this.UPC, this.subject, this.contributors
+		Book newItem = new Book(name, this.subject, this.contributors
 								,this.ISBN, this.DDSNumber);
 		return newItem;
 	}
@@ -90,7 +86,7 @@ class CD extends LibraryItem{
 	private String UPC;
 	
 	public CD(String title, String UPC, String subject, ArrayList<ContributorWithType> contributors) {
-		super(title, UPC, subject, contributors);
+		super(title, subject, contributors);
 		
 		
 		this.title = title;
@@ -121,18 +117,18 @@ class DVD extends LibraryItem{
 	private String title;
 	private String subject;
 	private ArrayList<ContributorWithType> contributors;
-	private String UPC;
+
 	
-	public DVD(String title, String UPC, String subject, ArrayList<ContributorWithType> contributors
+	public DVD(String title, String subject, ArrayList<ContributorWithType> contributors
 			,String genre) {
-		super(title, UPC, subject, contributors);
+		super(title, subject, contributors);
 		
 		
 		this.title = title;
 		this.subject = subject;
 		this.genre = genre;
 		this.contributors = contributors;
-		this.UPC = UPC;
+
 	}
 
 	@Override
@@ -145,7 +141,7 @@ class DVD extends LibraryItem{
 
 	@Override
 	public DVD modifyItem(String name) {
-		DVD dvd = new DVD(name, this.UPC, this.subject, this.contributors, this.genre);
+		DVD dvd = new DVD(name, this.subject, this.contributors, this.genre);
 		return dvd;
 	}
 }
@@ -157,18 +153,16 @@ class Magazine extends LibraryItem{
 	private String title;
 	private String subject;
 	private ArrayList<ContributorWithType> contributors;
-	private String UPC;
 	
-	public Magazine(String title, String UPC, String subject, ArrayList<ContributorWithType> contributors
+	public Magazine(String title, String subject, ArrayList<ContributorWithType> contributors
 			,String volume, String issue) {
-		super(title, UPC, subject, contributors);
+		super(title, subject, contributors);
 		
 		this.volume = volume;
 		this.issue = issue;
 		this.title = title;
 		this.subject = subject;
 		this.contributors = contributors;
-		this.UPC = UPC;
 	}
 
 	@Override
@@ -181,7 +175,7 @@ class Magazine extends LibraryItem{
 
 	@Override
 	public Magazine modifyItem(String name) {
-		Magazine maga = new Magazine(name, this.UPC, this.subject, this.contributors, this.volume, this.issue);
+		Magazine maga = new Magazine(name, this.subject, this.contributors, this.volume, this.issue);
 		return maga;
 		}
 	}
