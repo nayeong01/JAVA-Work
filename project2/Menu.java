@@ -31,7 +31,7 @@ public class Menu {
 	     System.out.println("Enter a choice: ");
 		 return new Scanner(System.in).nextInt();
 	}
-
+	
 	public static void main(String[] args) {
 		Menu menu = new Menu();
 		boolean test = true;
@@ -92,8 +92,7 @@ public class Menu {
 					
 				case QUIT:
 					System.out.println("이용해주셔서 감사합니다.");
-					test = false;
-			
+					test = false;	
 			}
 		}
 	}

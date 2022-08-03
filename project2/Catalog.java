@@ -1,10 +1,7 @@
 package com.ezdesign.project2;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
-
-import com.ezdesign.project.Restaurant;
 
 public class Catalog {
 
@@ -21,35 +18,54 @@ public class Catalog {
 			for(ContributorWithType contbr : item.getContributor())	{
 				contbr.describeContributor();
 			}
+			System.out.println("----------------------");
 		}
 	}
 
 	public void searchByTitle(String title) {
-		
+		System.out.println("------Search Result------");
 		for (int i =0; i <libraryitem.size(); i++) {
 			LibraryItem show = libraryitem.get(i);
 			if (title.equals(show.getTitle())) {
 				show.describeItem();
+				if(show.locate()!= null)
+					System.out.println("DDS Number : "+show.locate());
+				for(ContributorWithType contbr : show.getContributor())	{
+					contbr.describeContributor();
+				}
+				System.out.println("-------------------------");
 			}
 		}
 	}
 	
 	public void searchBySubject(String subject) {
-		
+		System.out.println("------Search Result------");
 		for (int i =0; i <libraryitem.size(); i++) {
 			LibraryItem show = libraryitem.get(i);
 			if (subject.equals(show.getSubject())) {
 				show.describeItem();
+				if(show.locate()!= null)
+					System.out.println("DDS Number : "+show.locate());
+				for(ContributorWithType contbr : show.getContributor())	{
+					contbr.describeContributor();
+				}
+				System.out.println("-------------------------");
 			}
 		}
 	}
 	
 	public void searchByContributor(String conbt) {
-		
+		System.out.println("------Search Result------");
 		for (LibraryItem item : libraryitem) {
 			for(ContributorWithType contbr : item.getContributor())	{
 				if(conbt.equals(contbr.contributor.name)) {
 					item.describeItem();
+					if(item.locate()!= null)
+						System.out.println("DDS Number : "+item.locate());
+					for(ContributorWithType contbr1 : item.getContributor()){
+						contbr1.describeContributor();
+					}
+						System.out.println("-------------------------");
 				}
 			}
 		}
@@ -65,7 +81,7 @@ public class Catalog {
 		
 		if (category==1) {
 			
-			ArrayList<ContributorWithType> author = new ArrayList<ContributorWithType>();
+			LinkedList<ContributorWithType> author = new LinkedList<ContributorWithType>();
 			
 			System.out.println("Enter the contributor number: ");
 			String num = sc.next();
@@ -86,10 +102,11 @@ public class Catalog {
 		
 		Book book = new Book(title1, subject1, author, isbn, dds);
 		libraryitem.add(book);
+		System.out.println(title1+"이 정상적으로 등록되었습니다.");
 		}
 		
 		else if (category==2) {
-			ArrayList<ContributorWithType> artist = new ArrayList<ContributorWithType>();
+			LinkedList<ContributorWithType> artist = new LinkedList<ContributorWithType>();
 			
 			System.out.println("Enter the Artist number: ");
 			String num1 = sc.next();
@@ -108,10 +125,11 @@ public class Catalog {
 			
 			CD cd = new CD(title1, UPC1, subject1, artist);
 			libraryitem.add(cd);
+			System.out.println(title1+"이 정상적으로 등록되었습니다.");
 		}
 
 		else if (category ==3) {
-			ArrayList<ContributorWithType> Editer = new ArrayList<ContributorWithType>();
+			LinkedList<ContributorWithType> Editer = new LinkedList<ContributorWithType>();
 			
 			System.out.println("Enter the Editer number: ");
 			String num2 = sc.next();
@@ -130,12 +148,13 @@ public class Catalog {
 			System.out.println("Enter the issue: ");
 			String issue = sc.next();
 			
-			Magazine magazine = new Magazine(title1, subject1,Editer,volume, issue);
+			Magazine magazine = new Magazine(title1, subject1, Editer,volume, issue);
 			libraryitem.add(magazine);
+			System.out.println(title1+"이 정상적으로 등록되었습니다.");
 		}
 		
 		else if (category == 4) {
-			ArrayList<ContributorWithType> DrAc = new ArrayList<ContributorWithType>();
+			LinkedList<ContributorWithType> DrAc = new LinkedList<ContributorWithType>();
 			
 			System.out.println("Enter the number of Director and Actor: ");
 			String num2 = sc.next();
@@ -154,6 +173,7 @@ public class Catalog {
 			
 			DVD dvd = new DVD(title1, subject1, DrAc, genre);
 			libraryitem.add(dvd);
+			System.out.println(title1+"이 정상적으로 등록되었습니다.");
 		}
 	}
 	
@@ -176,7 +196,8 @@ public class Catalog {
 				System.out.println("Enter the new item name: ");
 				String newName= new Scanner(System.in).next();
 				libraryitem.set(i, item.modifyItem(newName));
-				System.out.println(item.getTitle()+"이 수정되었습니다.");
+				//item.setTitle(title);
+				System.out.println(item.getTitle()+"이 정상적으로 수정되었습니다.");
 				//리스트 내용을 변경할 땐, set을 쓰면 된다. 여기서는 아예 리스트 자체를 덮어써버렸다. 
 			}
 		}

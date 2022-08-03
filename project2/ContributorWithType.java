@@ -16,5 +16,5 @@ public class ContributorWithType {
 	public Contributor getContr() {
 		return contributor;
 	}
-	}
+}
 
